@@ -12,22 +12,26 @@
     <h1 class="text-center mb-4">{{$product->productName}}</h1>
     <div class="product-meta">
         <p>
-            <span class="font-weight-bold text-primary">Proveedor</span>
-            {{$product->supplier->supplierName}}
+            <span class="font-weight-bold text-primary">Descripcion</span>
+            {{$product->description}}
         </p>
         <p>
-            <span class="font-weight-bold text-primary">Autor</span>
-            {{$product->user->name}}
+            <span class="font-weight-bold text-primary">DUI Vendedor</span>
+            {{$product->seller->dui}}
         </p>
+        
         <p>
             <span class="font-weight-bold text-primary">Precio</span>
             {{$product->price}}
         </p>
         <p>
-            <span class="font-weight-bold text-primary">Código de barra</span>
-            {{$product->barcode}}
+            <span class="font-weight-bold text-primary">Existencias</span>
+            {{$product->stok}}
         </p>
-        <button onclick="clickBtn()" class="btn btn-warning"> Click me</button>
+        <p>
+            <span class="font-weight-bold text-primary">Garantia</span>
+            {{$product->garanty}}
+        </p>
     </div>
 
 </article>

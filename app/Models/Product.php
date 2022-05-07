@@ -10,6 +10,7 @@ class Product extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $primaryKey = 'product_id';
     protected $data =['delete_at'];
 
     protected $fillable = [
@@ -21,7 +22,6 @@ class Product extends Model
         'garanty',
         'seller_id',
     ];
-    protected $primaryKey = 'product_id';
 
     public function index(){
         return view('products.index');
@@ -29,6 +29,6 @@ class Product extends Model
 
     public function seller()
     {
-        return $this->belongsTo(Seller::class,'id');
+        return $this->belongsTo(Seller::class,'seller_id');
     }
 }

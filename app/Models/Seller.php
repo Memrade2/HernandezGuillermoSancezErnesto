@@ -8,12 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Seller extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'seller_id';
 
     public function user()
     {
-        return $this->belongsTo(User::class,'id');
-    } public function product()
+        return $this->hasOne(User::class,'id');
+    }
+    public function product()
     {
-        return $this->hasMany(Product::class,'id');
+        return $this->hasMany(Product::class,'product_id');
     }
 }

@@ -24,7 +24,7 @@ class ProductController extends Controller
     {
         //$products = auth()->user()->products;
         
-        $products = auth()->user()->products;
+        $products =Product::all();
         return view('products.index')->with('products',$products);
         //return view('products.index');
     }
