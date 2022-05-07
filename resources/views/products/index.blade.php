@@ -5,7 +5,12 @@
 
 @section('buttons')
    <!-- <a class="btn btn-primary mr-2" href="{/*{ /products/create }*/}">Crear Productos</a>--> 
-   <a class="btn btn-primary mr-2" >Crear Productos</a>
+   <a class="btn btn-primary mr-2" href="{{route('products.create')}}">Crear Productos</a>
+@endsection
+
+@section('buttons')
+   <!-- <a class="btn btn-primary mr-2" href="{/*{ /products/create }*/}">Crear Productos</a>--> 
+   <a class="btn btn-primary mr-2" href="{{route('products.create')}}">Crear Productos</a>
 @endsection
 
 @section('content')
@@ -25,7 +30,25 @@
             </tr>
 
         </thead>
-        
+        <tbody>
+            {{$products}}
+            @foreach ($products as $item)
+                <tr>
+                    <td>{{$item->product_id}}</td>
+                    <td>{{$item->productName}}</td>
+                    <td>{{$item->description}}</td>
+                    <td>{{$item->price}}</td>
+                    <td>{{$item->stok}}</td>
+                    <td>{{$item->garanty}}</td>
+                    <td>{{$item->seller_id}}</td>
+                    <td>
+                        <a href="{{ route('products.destroy', ['product' => $item->product_id]) }}" class="btn btn-danger mr-1">Eliminar</a>
+                        <a href="{{ route('products.edit', ['product' => $item->product_id]) }}" class="btn btn-warning mr-1">Editar</a>
+                        <a href="{{url('/products/'.$item->product_id)}}" class="btn btn-success mr-1">Mostrar</a>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
     </table>
 </div>
 @endsection
