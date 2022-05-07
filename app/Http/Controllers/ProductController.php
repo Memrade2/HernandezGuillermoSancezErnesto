@@ -75,7 +75,8 @@ class ProductController extends Controller
             'seller_id' => $data['seller_id'],
         ]);
         $products=auth()->user()->products;*/
-        return view('products.index');
+        $products =Product::all();
+        return view('products.index')->with('products',$products);
     }
 
     /**
