@@ -11,7 +11,7 @@ class ProductController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +19,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return view('products.index');
     }
 
     /**

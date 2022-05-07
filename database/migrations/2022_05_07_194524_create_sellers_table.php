@@ -18,7 +18,7 @@ return new class extends Migration
             $table->String('dui');
             $table->String('address');
             $table->String('nit');
-            $table->foreignId('user_id')->references('user_id')->on('users');
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->softDeletes();
             $table->timestamps();
         });
