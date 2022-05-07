@@ -97,8 +97,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $seller = Seller::all(['seller_id','user_id']);
-        return view('products.edit', compact('seller', 'product'));
+        //$sellers = Seller::all(['seller_id','user_id']);
+        $sellers = DB::table('sellers')->get()->pluck('user_id','seller_id');
+        return view('products.edit', compact('sellers', 'product'));
     }
 
     /**
