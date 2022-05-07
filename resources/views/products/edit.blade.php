@@ -87,13 +87,19 @@
 <div class="row mb-3">
     <label for="seller_id">Vendedores</label>
     <div class="col-md-6">
-       <select name="seller_id" class="form-control  @error('seller_id') is-invalid @enderror" id="seller_id">
-            <option >--- Seleccione una opción ---</option>
-          @foreach ($sellers as $id => $seller_id)
-              <option value="{{ $id }}"{{old('seller_id')==$id ? 'selected' :''}}>{{$seller_id}}</option>
-          @endforeach
-       </select>
-       @error('seller_id')
+       
+
+       <select name="seller_id" class="form-control  
+            @error('seller_id') is-invalid @enderror" id="seller_id">
+            <option>Seleccione---</option>
+            @foreach ($sellers as $supplier)
+            <option value="{{ $supplier->seller_id }}"
+                {{$product->seller_id==$supplier->seller_id ? 'selected' : '' }}> {{ $supplier->dui }}</option>
+            @endforeach
+
+        </select>
+       
+        @error('seller_id')
             <span class="invalid-feedback d-block" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
@@ -103,12 +109,34 @@
 <div class="row mb-0"> 
 </div>
 <div class="form-group">
-    <input  type="submit" class="btn btn-primary" value="Agregar Producto" />
+    <button class="btn btn-warning"> Agregar Producto</button>
+    
 </div>
 </form>
-</div>
-</div>
 
+</div>
+</div>
 @endsection
 @section('js')
+<script type="text/javascript">
+    function clickBtn(){
+        Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    Swal.fire(
+      'Deleted!',
+      'Your file has been deleted.',
+      'success'
+    )
+  }
+})
+        
+    }
 @endsection

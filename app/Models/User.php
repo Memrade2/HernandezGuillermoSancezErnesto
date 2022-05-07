@@ -43,6 +43,6 @@ class User extends Authenticatable
     ];
     public function seller()
     {
-        return $this->hasOner(Seller::class,'seller_id');
+        return $this->hasOne(Seller::class,'seller_id');
     }
 }

@@ -36,7 +36,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $sellers = DB::table('sellers')->get()->pluck('user_id','seller_id');
+        $sellers = DB::table('sellers')->get()->pluck('dui','seller_id');
         return view('products.create')->with('sellers', $sellers);
     }
 
@@ -97,8 +97,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //$sellers = Seller::all(['seller_id','user_id']);
-        $sellers = DB::table('sellers')->get()->pluck('user_id','seller_id');
+        $sellers = Seller::all(['seller_id','dui']);
+        //$sellers = DB::table('sellers')->get()->pluck('user_id','seller_id');
         return view('products.edit', compact('sellers', 'product'));
     }
 
@@ -128,7 +128,8 @@ class ProductController extends Controller
         $product->seller_id = $data['seller_id'];
 
         $product->save();
-        $products=auth()->user()->products;
+        //$products=auth()->user()->products;
+        $products =Product::all();
         return view('products.index')->with('products',$products);
     }
 
@@ -138,8 +139,10 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
+        Product::find($id)->delete();
+
+        return view('products.index');
     }
 }
